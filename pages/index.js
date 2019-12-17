@@ -7,12 +7,20 @@ import {
   Slider,
   Button,
 } from 'antd'
+import {Home} from "./home";
+import LoadMoreList from "./list";
+import Link from 'next/link';
 
-const FormItem = Form.Item
-const Option = Select.Option
+const FormItem = Form.Item;
+const Option = Select.Option;
 
 export default () => (
   <div style={{ marginTop: 100 }}>
+    <Link href="/home">
+      <a>Home</a>
+    </Link>
+    {/*<Home/>*/}
+    <LoadMoreList />
     <Form layout="horizontal">
       <FormItem
         label="Input Number"
