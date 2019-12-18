@@ -8,7 +8,7 @@ import {
   Button,
 } from 'antd'
 import {Home} from "./home";
-import LoadMoreList from "./list";
+// import LoadMoreList from "./list";
 import Link from 'next/link';
 
 const FormItem = Form.Item;
@@ -20,7 +20,7 @@ export default () => (
       <a>Home</a>
     </Link>
     {/*<Home/>*/}
-    <LoadMoreList />
+    {/*<LoadMoreList />*/}
     <Form layout="horizontal">
       <FormItem
         label="Input Number"

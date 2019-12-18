@@ -13,7 +13,9 @@
     "next": "latest",
     "null-loader": "2.0.0",
     "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "react-dom": "^16.7.0",
+    "reqwest": "^2.0.5",
+    "xhr2": "^0.2.0"
   },
   "license": "ISC"
 }

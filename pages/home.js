@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Link from "next/link";
 
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+// import Example from "./list";
+import LoadMoreList from "./list";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -94,7 +96,9 @@ const Home = () => {
                     <Breadcrumb.Item>User</Breadcrumb.Item>
                     <Breadcrumb.Item>Bill</Breadcrumb.Item>
                 </Breadcrumb>
-                <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>Bill is a cat.</div>
+                <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                    <LoadMoreList/>
+                </div>
             </Content>
             <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
         </Layout>
