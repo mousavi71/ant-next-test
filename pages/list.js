@@ -6,11 +6,66 @@ const count = 3;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat&noinfo`;
 
 class LoadMoreList extends React.Component {
+    // state = {
+    //     initLoading: true,
+    //     loading: false,
+    //     data: [],
+    //     list: [],
+    // };
+
     state = {
-        initLoading: true,
+        initLoading: false,
         loading: false,
-        data: [],
-        list: [],
+        data: [{
+            loading: false,
+            name: {
+                first: 'sajjad',
+                last: 'mousavi'
+            }
+        },{
+            loading: false,
+            name: {
+                first: 'gholi',
+                last: 'gholi'
+            }
+        },{
+            loading: false,
+            name: {
+                first: 'asghar',
+                last: 'asghar'
+            }
+        },{
+            loading: false,
+            name: {
+                first: 'gholam',
+                last: 'gholam'
+            }
+        }],
+        list: [{
+            loading: false,
+            name: {
+                first: 'sajjad',
+                last: 'mousavi'
+            }
+        },{
+            loading: false,
+            name: {
+                first: 'gholi',
+                last: 'gholi'
+            }
+        },{
+            loading: false,
+            name: {
+                first: 'asghar',
+                last: 'asghar'
+            }
+        },{
+            loading: false,
+            name: {
+                first: 'gholam',
+                last: 'gholam'
+            }
+        }],
     };
 
     componentDidMount() {
@@ -35,9 +90,14 @@ class LoadMoreList extends React.Component {
         });
     };
 
-    edit = (e) => {
+    edit = (index) => {
         let newList = this.state.list;
-        console.log(newList, 'newList', e);
+        newList.splice(index, 1);
+        console.log(this.state, index, newList);
+        this.setState({
+            loading: true,
+            list: newList,
+        });
 
     };
     add = () => {
@@ -90,9 +150,9 @@ class LoadMoreList extends React.Component {
                 itemLayout="horizontal"
                 loadMore={loadMore}
                 dataSource={list}
-                renderItem={item => (
+                renderItem={(item, index) => (
                     <List.Item
-                        actions={[<a key="list-loadmore-edit">edit</a>, <a onClick={(e) => this.edit(e)} key="list-loadmore-more">delete</a>]}
+                        actions={[<a key="list-loadmore-edit">edit</a>, <a onClick={this.edit.bind(this, index)} key="list-loadmore-more">delete</a>]}
                     >
                         <Skeleton avatar title={false} loading={item.loading} active>
                             <List.Item.Meta
