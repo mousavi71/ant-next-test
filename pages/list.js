@@ -1,72 +1,73 @@
 import { List, Avatar, Button, Skeleton } from 'antd';
 
 import reqwest from 'reqwest';
-
-const count = 3;
+import { Popconfirm } from 'antd';
+import Link from "next/link";
+const count = 6;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat&noinfo`;
 
 class LoadMoreList extends React.Component {
-    // state = {
-    //     initLoading: true,
-    //     loading: false,
-    //     data: [],
-    //     list: [],
-    // };
-
     state = {
-        initLoading: false,
+        initLoading: true,
         loading: false,
-        data: [{
-            loading: false,
-            name: {
-                first: 'sajjad',
-                last: 'mousavi'
-            }
-        },{
-            loading: false,
-            name: {
-                first: 'gholi',
-                last: 'gholi'
-            }
-        },{
-            loading: false,
-            name: {
-                first: 'asghar',
-                last: 'asghar'
-            }
-        },{
-            loading: false,
-            name: {
-                first: 'gholam',
-                last: 'gholam'
-            }
-        }],
-        list: [{
-            loading: false,
-            name: {
-                first: 'sajjad',
-                last: 'mousavi'
-            }
-        },{
-            loading: false,
-            name: {
-                first: 'gholi',
-                last: 'gholi'
-            }
-        },{
-            loading: false,
-            name: {
-                first: 'asghar',
-                last: 'asghar'
-            }
-        },{
-            loading: false,
-            name: {
-                first: 'gholam',
-                last: 'gholam'
-            }
-        }],
+        data: [],
+        list: [],
     };
+
+    // state = {
+    //     initLoading: false,
+    //     loading: false,
+    //     data: [{
+    //         loading: false,
+    //         name: {
+    //             first: 'sajjad',
+    //             last: 'mousavi'
+    //         }
+    //     },{
+    //         loading: false,
+    //         name: {
+    //             first: 'gholi',
+    //             last: 'gholi'
+    //         }
+    //     },{
+    //         loading: false,
+    //         name: {
+    //             first: 'asghar',
+    //             last: 'asghar'
+    //         }
+    //     },{
+    //         loading: false,
+    //         name: {
+    //             first: 'gholam',
+    //             last: 'gholam'
+    //         }
+    //     }],
+    //     list: [{
+    //         loading: false,
+    //         name: {
+    //             first: 'sajjad',
+    //             last: 'mousavi'
+    //         }
+    //     },{
+    //         loading: false,
+    //         name: {
+    //             first: 'gholi',
+    //             last: 'gholi'
+    //         }
+    //     },{
+    //         loading: false,
+    //         name: {
+    //             first: 'asghar',
+    //             last: 'asghar'
+    //         }
+    //     },{
+    //         loading: false,
+    //         name: {
+    //             first: 'gholam',
+    //             last: 'gholam'
+    //         }
+    //     }],
+    // };
 
     componentDidMount() {
         this.getData(res => {
@@ -90,12 +91,11 @@ class LoadMoreList extends React.Component {
         });
     };
 
-    edit = (index) => {
+    delete = (index) => {
         let newList = this.state.list;
         newList.splice(index, 1);
         console.log(this.state, index, newList);
         this.setState({
-            loading: true,
             list: newList,
         });
 
@@ -104,7 +104,7 @@ class LoadMoreList extends React.Component {
 
     };
     onLoadMore = () => {
-        this.edit();
+        this.delete();
         this.setState({
             loading: true,
             list: this.state.data.concat([...new Array(count)].map(() => ({ loading: true, name: {} }))),
@@ -152,7 +152,17 @@ class LoadMoreList extends React.Component {
                 dataSource={list}
                 renderItem={(item, index) => (
                     <List.Item
-                        actions={[<a key="list-loadmore-edit">edit</a>, <a onClick={this.edit.bind(this, index)} key="list-loadmore-more">delete</a>]}
+                        actions={[<a key="list-loadmore-edit">edit</a>,
+                            <Link href={`/users?${index}`}>
+                                <a>Home</a>
+                            </Link>,
+                            <Popconfirm title="Are you sure？"
+                                        okText="Yes"
+                                        cancelText="No"
+                                        placement="bottom"
+                                        onConfirm={this.delete.bind(this, index)}>
+                                <a href="#">Delete</a>
+                            </Popconfirm>]}
                     >
                         <Skeleton avatar title={false} loading={item.loading} active>
                             <List.Item.Meta
