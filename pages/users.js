@@ -1,13 +1,18 @@
 import { Input, Tooltip, Icon } from 'antd';
 
 import React, { useState, useEffect } from 'react';
+import queryString from 'query-string';
 
-function Example() {
+
+const UserEdit = (props) => {
     // Declare a new state variable, which we'll call "count"
     const [count, setCount] = useState(0);
     useEffect(() => {
         // Update the document title using the browser API
         document.title = `You clicked ${count} times`;
+        // let params = queryString.parse(this.props.location.search);
+        const params = new URLSearchParams(props.location);
+        console.log(params);
     });
 
     return (
@@ -35,3 +40,4 @@ function Example() {
         </div>
     );
 }
+export default UserEdit;
