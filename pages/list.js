@@ -3,6 +3,7 @@ import { List, Avatar, Button, Skeleton } from 'antd';
 import reqwest from 'reqwest';
 import { Popconfirm } from 'antd';
 import Link from "next/link";
+import UserEdit from "./users"
 const count = 6;
 const fakeDataUrl = `https://randomuser.me/api/?results=${count}&inc=name,gender,email,nat&noinfo`;
 
@@ -13,61 +14,6 @@ class LoadMoreList extends React.Component {
         data: [],
         list: [],
     };
-
-    // state = {
-    //     initLoading: false,
-    //     loading: false,
-    //     data: [{
-    //         loading: false,
-    //         name: {
-    //             first: 'sajjad',
-    //             last: 'mousavi'
-    //         }
-    //     },{
-    //         loading: false,
-    //         name: {
-    //             first: 'gholi',
-    //             last: 'gholi'
-    //         }
-    //     },{
-    //         loading: false,
-    //         name: {
-    //             first: 'asghar',
-    //             last: 'asghar'
-    //         }
-    //     },{
-    //         loading: false,
-    //         name: {
-    //             first: 'gholam',
-    //             last: 'gholam'
-    //         }
-    //     }],
-    //     list: [{
-    //         loading: false,
-    //         name: {
-    //             first: 'sajjad',
-    //             last: 'mousavi'
-    //         }
-    //     },{
-    //         loading: false,
-    //         name: {
-    //             first: 'gholi',
-    //             last: 'gholi'
-    //         }
-    //     },{
-    //         loading: false,
-    //         name: {
-    //             first: 'asghar',
-    //             last: 'asghar'
-    //         }
-    //     },{
-    //         loading: false,
-    //         name: {
-    //             first: 'gholam',
-    //             last: 'gholam'
-    //         }
-    //     }],
-    // };
 
     componentDidMount() {
         this.getData(res => {
@@ -152,9 +98,9 @@ class LoadMoreList extends React.Component {
                 dataSource={list}
                 renderItem={(item, index) => (
                     <List.Item
-                        actions={[<a key="list-loadmore-edit">edit</a>,
-                            <Link href={`/users?${index}`}>
-                                <a>Home</a>
+                        actions={[
+                            <Link href={`/users?id=${index}`}>
+                                <a>Edit</a>
                             </Link>,
                             <Popconfirm title="Are you sure？"
                                         okText="Yes"

@@ -1,22 +1,20 @@
 import { Input, Tooltip, Icon } from 'antd';
+import { useRouter } from 'next/router';
 
 import React, { useState, useEffect } from 'react';
 import queryString from 'query-string';
 
 
-const UserEdit = (props) => {
-    // Declare a new state variable, which we'll call "count"
+const UserEdit = () => {
     const [count, setCount] = useState(0);
+    const router = useRouter();
     useEffect(() => {
-        // Update the document title using the browser API
         document.title = `You clicked ${count} times`;
-        // let params = queryString.parse(this.props.location.search);
-        const params = new URLSearchParams(props.location);
-        console.log(params);
     });
 
     return (
         <div>
+            <h1>{router.query.id}</h1>
             <p>You clicked {count} times</p>
             <button onClick={() => setCount(count + 1)}>
                 Click me
