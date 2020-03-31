@@ -10,7 +10,7 @@
     "@zeit/next-css": "^1.0.1",
     "antd": "^3.9.2",
     "babel-plugin-import": "^1.9.1",
-    "next": "^9.1.6",
+    "next": "^9.3.2",
     "next-redux-wrapper": "^4.0.1",
     "null-loader": "2.0.0",
     "react": "^16.7.0",
